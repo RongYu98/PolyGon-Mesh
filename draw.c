@@ -50,13 +50,13 @@ jdyrlandweaver
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
   for (i=0; i<polygons->lastcol; i+=3){
-    add_line( polygons->m[0][i],  polygons->m[1][i], 
+    draw_line( polygons->m[0][i],  polygons->m[1][i], 
 	      polygons->m[0][i+1],polygons->m[1][i+1],
 	      s , c);
-    add_line( polygons->m[0][i+1], polygons->m[1][i+1], 
+    draw_line( polygons->m[0][i+1], polygons->m[1][i+1], 
 	      polygons->m[0][i+2], polygons->m[1][i+2],
 	      s , c);
-    add_line( polygons->m[0][i+2], polygons->m[1][i+2], 
+    draw_line( polygons->m[0][i+2], polygons->m[1][i+2], 
 	      polygons->m[0][i], polygons->m[1][i],
 	      s , c);
   } 
@@ -287,45 +287,67 @@ void add_box( struct matrix * points,
   Back:  p5, p6, p7 //  p5, p7, p4
   */
   //front
-  add_polygons( points, 
-		x, y, z, //p0
-		x, y2, z, //p3
-		x2, y2, z); // p2
-  add_polygons( points, 
-		x, y, z, //p0
-		x2, y2, z, //p2
-		x2, y, z); // p1
+  add_polygon( points, 
+	       x, y, z, //p0
+	       x, y2, z, //p3
+	       x2, y2, z); // p2
+  add_polygon( points, 
+	       x, y, z, //p0
+	       x2, y2, z, //p2
+	       x2, y, z); // p1
   
   //back
-  add_polygons( points, 
-		x2, y, z2, //p5
-		x2, y2, z2, //p6
-		x, y2, z2); //p7
-  add_polygons( points, 
-		x2, y, z2, //p5
-		x, y2, z2, //p7
-		x, y, z2); //p4
-
-  // right side
-  add_polygons( points, 
-		x2, y, z, //p1
-		x2, y2, z, //p2
-		x2, y2, z2); //p6
-  add_polygons( points, 
-		x2, y, z, //p1
-		x2, y2, z2, //p6
-		x2, y, z2); //p5
-        
-  // left side
-  add_polygons( points, 
-		x2, y, z2, //p5
-		x2, y2, z2, //p6
-		x, y2, z2); //p7
+  add_polygon( points, 
+	       x2, y, z2, //p5
+	       x2, y2, z2, //p6
+	       x, y2, z2); //p7
+  add_polygon( points, 
+	       x2, y, z2, //p5
+	       x, y2, z2, //p7
+	       x, y, z2); //p4
   
+  // right side
+  add_polygon( points, 
+	       x2, y, z, //p1
+	       x2, y2, z, //p2
+	       x2, y2, z2); //p6
+  add_polygon( points, 
+	       x2, y, z, //p1
+	       x2, y2, z2, //p6
+	       x2, y, z2); //p5
+  
+  // left side
+  add_polygon( points, 
+	       x, y, z, //p0
+	       x, y, z2, //p4
+	       x, y2, z); //p3
+  add_polygon( points,
+	       x, y, z2, //p4
+	       x, y2, z2, //p7
+	       x, y2, z); //p3
+
   //botton
+  add_polygon( points,
+	       x, y2, z, // p3
+	       x2, y2, z2, //p6
+	       x2, y2, z); // p2
+  add_polygon( points,
+	       x, y2, z, //p3
+	       x, y2, z2, //p7
+	       x2, y2, z2); //p6
+
 
   //up
-  
+
+  add_polygon( points,
+	       x, y, z2, //p4
+	       x, y, z, //p0
+	       x2, y, z);//p1
+
+  add_polygon( points,
+	       x, y, z2,// p4
+	       x2, y, z,// p1
+	       x2, y, z2);// p5 
   
   /*
   add_edge( points, 
