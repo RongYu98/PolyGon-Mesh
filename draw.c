@@ -49,7 +49,7 @@ jdyrlandweaver
 ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
-  for (i=0; i<polygons->lastcol; i+=3){
+  for (i=0; i<polygons->lastcol-2; i+=3){
     draw_line( polygons->m[0][i],  polygons->m[1][i], 
 	      polygons->m[0][i+1],polygons->m[1][i+1],
 	      s , c);
@@ -100,10 +100,21 @@ void add_sphere( struct matrix * points,
   latStop = num_steps;
   longStart = 0;
   longStop = num_steps;
+  index = 0;
+
   
   for ( lat = latStart; lat < latStop; lat++ ) {
     for ( longt = longStart; longt < longStop; longt++ ) {
-      
+
+      add_polygon( points, //points:
+		   temp->m[0][index], temp->m[1][index+step], temp->m[2][index+i],
+		   temp->m[0][index], temp->m[1][index+step], temp->m[2][index+i],
+		   temp->m[0][index], temp->m[1][index+step], temp->m[2][index+i]);
+      add_polygon( points, //points:
+		   temp->m[0][index], temp->m[1][index+step], temp->m[2][index+i],
+		   temp->m[0][index], temp->m[1][index+step], temp->m[2][index+i],
+		   temp->m[0][index], temp->m[1][index+step], temp->m[2][index+i]);
+      /*
       index = lat * (num_steps+1) + longt;
       add_edge( points, temp->m[0][index],
 		temp->m[1][index],
@@ -111,8 +122,10 @@ void add_sphere( struct matrix * points,
 		temp->m[0][index] + 1,
 		temp->m[1][index] + 1,
 		temp->m[2][index] );
+      */
     }//end points only
   }
+  
   free_matrix(temp);
 }
 
@@ -286,15 +299,18 @@ void add_box( struct matrix * points,
   Front: p0, p3, p2 //  p0, p2, p1
   Back:  p5, p6, p7 //  p5, p7, p4
   */
+  
   //front
   add_polygon( points, 
 	       x, y, z, //p0
 	       x, y2, z, //p3
 	       x2, y2, z); // p2
+  
   add_polygon( points, 
 	       x, y, z, //p0
 	       x2, y2, z, //p2
 	       x2, y, z); // p1
+
   
   //back
   add_polygon( points, 
@@ -336,14 +352,11 @@ void add_box( struct matrix * points,
 	       x, y2, z2, //p7
 	       x2, y2, z2); //p6
 
-
   //up
-
   add_polygon( points,
 	       x, y, z2, //p4
 	       x, y, z, //p0
 	       x2, y, z);//p1
-
   add_polygon( points,
 	       x, y, z2,// p4
 	       x2, y, z,// p1
