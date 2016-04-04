@@ -88,7 +88,8 @@ void add_sphere( struct matrix * points,
   int index;
   double x, y, z;
   int num_steps;
-  
+
+  step = 10;
   num_steps = MAX_STEPS / step;
 
   temp = new_matrix( 4, num_steps * num_steps );
@@ -102,7 +103,7 @@ void add_sphere( struct matrix * points,
   longStop = num_steps;
   index = 0;
 
-  latStop = num_steps/3;  
+  //latStop = num_steps/3;  
   for ( lat = latStart; lat < latStop; lat++ ) {
     for ( longt = longStart; longt < longStop; longt++ ) {
 
