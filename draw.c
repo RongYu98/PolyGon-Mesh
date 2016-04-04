@@ -89,7 +89,7 @@ void add_sphere( struct matrix * points,
   double x, y, z;
   int num_steps;
 
-  step = 10;
+  //step = 10;
   num_steps = MAX_STEPS / step;
 
   temp = new_matrix( 4, num_steps * num_steps );
