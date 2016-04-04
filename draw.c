@@ -204,7 +204,9 @@ void add_torus( struct matrix * points,
   //generate the points on the torus
   generate_torus( temp, cx, cy, r1, r2, step );
 
-  //printf("Got to after generate torus\n");
+  index = 0;
+  
+  printf("Got to after generate torus\n");
   int latStop, longtStop, latStart, longStart;
   latStart = 0;
   longStart = 0;
@@ -212,11 +214,11 @@ void add_torus( struct matrix * points,
   longtStop = num_steps;
   for ( lat = 0; lat < num_steps; lat++ )
     for ( longt = 0; longt < num_steps; longt++ ) {
-      //printf("Got into the for loop\n");
+      printf("Got into the for loop\n");
       if ( ( index + num_steps + 1) < temp->lastcol ){
 	printf("Got into the if\n");
 	//print_matrix(temp);
-	printf("%d",index);
+	printf("%d\n",index);
 	add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
@@ -242,6 +244,7 @@ void add_torus( struct matrix * points,
 		temp->m[2][index] );
 */
     }//end points only
+  free_matrix(temp);
 }
 
 /*======== void generate_torus() ==========
