@@ -1,0 +1,13 @@
+torus
+250 250 240 100
+#yrotate
+#90
+#zrotate
+#90
+#xrotate
+#90
+translate
+#250 250 0
+#apply
+save
+torus.png
