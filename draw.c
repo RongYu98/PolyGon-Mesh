@@ -361,33 +361,6 @@ void add_box( struct matrix * points,
 	       x, y, z2,// p4
 	       x2, y, z,// p1
 	       x2, y, z2);// p5 
-  
-  /*
-  add_edge( points, 
-	    x, y, z, 
-	    x, y, z );
-  add_edge( points, 
-	    x, y2, z, 
-	    x, y2, z );
-  add_edge( points, 
-	    x2, y, z, 
-	    x2, y, z );
-  add_edge( points, 
-	    x2, y2, z, 
-	    x2, y2, z );
-  add_edge( points, 
-	    x, y, z2, 
-	    x, y, z2 );
-  add_edge( points, 
-	    x, y2, z2, 
-	    x, y2, z2 );
-  add_edge( points, 
-	    x2, y, z2, 
-	    x2, y, z2 );
-  add_edge( points, 
-	    x2, y2, z2, 
-	    x2, y2, z2 );
-  */
 }
   
 /*======== void add_circle() ==========
@@ -466,11 +439,6 @@ void add_curve( struct matrix *points,
     xcoefs = generate_curve_coefs(x0, x1, x2, x3, HERMITE_MODE);
     ycoefs = generate_curve_coefs(y0, y1, y2, y3, HERMITE_MODE);
   }
-
-  /*
-  printf("a = %lf b = %lf c = %lf d = %lf\n", xcoefs->m[0][0],
-         xcoefs->m[1][0], xcoefs->m[2][0], xcoefs->m[3][0]);
-  */
 
   for (t=step; t <= 1; t+= step) {
     
