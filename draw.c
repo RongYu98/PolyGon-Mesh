@@ -108,12 +108,14 @@ void add_sphere( struct matrix * points,
 
       add_polygon( points, //points:
 		   temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		   temp->m[0][index+step+1], temp->m[1][index+step+1], temp->m[2][index+step+1], //p12
-		   temp->m[0][index+step], temp->m[1][index+step], temp->m[2][index+step]); //p11
+		   temp->m[0][index+num_step+1], temp->m[1][index+num_step+1], temp->m[2][index+num_step+1], //p12
+		   temp->m[0][index+num_step], temp->m[1][index+num_step], temp->m[2][index+num_step]); //p11
       add_polygon( points, //points:
 		   temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		   temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
-		   temp->m[0][index+step+1], temp->m[1][index+step+1], temp->m[2][index+step+1]); //p12
+		   temp->m[0][index+num_step+1], temp->m[1][index+num_step+1], temp->m[2][index+num_step+1]); //p12
+      
+      index += 1;
       /*
       index = lat * (num_steps+1) + longt;
       add_edge( points, temp->m[0][index],
