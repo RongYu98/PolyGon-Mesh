@@ -214,16 +214,16 @@ void add_torus( struct matrix * points,
   longtStop = num_steps;
   for ( lat = 0; lat < num_steps; lat++ )
     for ( longt = 0; longt < num_steps; longt++ ) {
-      printf("Got into the for loop\n");
+      //printf("Got into the for loop\n");
       if ( ( index + num_steps + 1) < temp->lastcol ){
-	printf("Got into the if\n");
+	//printf("Got into the if\n");
 	//print_matrix(temp);
 	printf("%d\n",index);
 	add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
 		     temp->m[0][index+num_steps], temp->m[1][index+num_steps], temp->m[2][index+num_steps]); //p11
-	printf("This is after the first add\n");
+	//printf("This is after the first add\n");
 	add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
