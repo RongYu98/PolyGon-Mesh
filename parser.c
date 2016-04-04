@@ -147,8 +147,10 @@ void parse_file ( char * filename,
     else if (strncmp(line, "torus", strlen(line)) == 0 ) {
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf %lf", &x, &y, &z, &z1);
+      printf("Got Here\n");
       add_torus(pm, x, y, z, z1, 1);
       //printf( "%lf %lf %lf\n", x, y, z);
+      printf("Success!\n");
     }
     else if ( strncmp(line, "scale", strlen(line)) == 0 ) {
       //printf("SCALE\n");
