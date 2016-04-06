@@ -154,7 +154,6 @@ void generate_sphere( struct matrix * points,
   int rotStop = MAX_STEPS;
   int circStart = step * 0;
   int circStop = MAX_STEPS;
-  step += 5;
   
   for ( rotation = rotStart; rotation < rotStop; rotation += step ) {
     rot = (double)rotation / MAX_STEPS;
@@ -275,7 +274,6 @@ void generate_torus( struct matrix * points,
   double rotStop = MAX_STEPS;
   double circStart = step * 0;
   double circStop = MAX_STEPS;
-  step+=2;
 
   for ( rotation = rotStart; rotation < rotStop; rotation += step ) {
 

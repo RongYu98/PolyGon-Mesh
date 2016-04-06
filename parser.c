@@ -141,14 +141,14 @@ void parse_file ( char * filename,
     else if (strncmp(line, "sphere", strlen(line)) == 0 ) {
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf", &x, &y, &z);
-      add_sphere(pm, x, y, z, 1);
+      add_sphere(pm, x, y, z, 5);
       //printf( "%lf %lf %lf\n", x, y, z);
     }
     else if (strncmp(line, "torus", strlen(line)) == 0 ) {
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf %lf", &x, &y, &z, &z1);
       printf("Got Here\n");
-      add_torus(pm, x, y, z, z1, 1);
+      add_torus(pm, x, y, z, z1, 5);
       //printf( "%lf %lf %lf\n", x, y, z);
       printf("Success!\n");
     }
