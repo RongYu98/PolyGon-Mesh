@@ -49,7 +49,24 @@ jdyrlandweaver
 ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
+  int ax, ay, az, bx, by, bz, nx, ny, nz;
+  
   for (i=0; i<polygons->lastcol-2; i+=3){
+
+    //Step 1: Calculate N:
+    //A = <x1 - x0, y1-y0, z1 - z0>
+    ax = polygons->m[0][i+1] - polygons->m[0][i];
+    ay = polygons->m[1][i+1] - polygons->m[1][i];
+    az = polygons->m[2][i+1] - polygons->m[2][i];
+    //A = <x2 - x0, y2 - y0, z2-z0>
+    bx = polygons->m[0][i+2] - polygons->m[0][i];
+    by = polygons->m[1][i+2] - polygons->m[1][i];
+    bz = polygons->m[2][i+2] - polygons->m[2][i];
+    //N = 
+    nx = ay*bz - az*by;
+    ny = az*bx - ax*bz;
+    nz = ax*by - ay*bx;
+    
     draw_line( polygons->m[0][i],  polygons->m[1][i], 
 	      polygons->m[0][i+1],polygons->m[1][i+1],
 	      s , c);
