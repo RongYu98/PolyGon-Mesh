@@ -154,6 +154,7 @@ void generate_sphere( struct matrix * points,
   int rotStop = MAX_STEPS;
   int circStart = step * 0;
   int circStop = MAX_STEPS;
+  step += 5;
   
   for ( rotation = rotStart; rotation < rotStop; rotation += step ) {
     rot = (double)rotation / MAX_STEPS;
@@ -218,7 +219,7 @@ void add_torus( struct matrix * points,
       if ( ( index + num_steps + 1) < temp->lastcol ){
 	//printf("Got into the if\n");
 	//print_matrix(temp);
-	printf("%d\n",index);
+	//printf("%d\n",index);
 	add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
@@ -274,6 +275,7 @@ void generate_torus( struct matrix * points,
   double rotStop = MAX_STEPS;
   double circStart = step * 0;
   double circStop = MAX_STEPS;
+  step+=2;
 
   for ( rotation = rotStart; rotation < rotStop; rotation += step ) {
 
