@@ -51,6 +51,7 @@ void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
   int ax, ay, az, bx, by, bz, nx, ny, nz;
   
+  int face = 0;
   for (i=0; i<polygons->lastcol-2; i+=3){
 
     //Step 1: Calculate N:
@@ -67,16 +68,30 @@ void draw_polygons( struct matrix *polygons, screen s, color c ) {
     ny = az*bx - ax*bz;
     nz = ax*by - ay*bx;
     
-    draw_line( polygons->m[0][i],  polygons->m[1][i], 
-	      polygons->m[0][i+1],polygons->m[1][i+1],
+    int vx = 0;
+    int vy = 0;
+    int vz = -1;
+    
+    if ( (nx * vx + ny * vy + nz * vz) < -1 ){
+      face = 1;
+    } else {
+      face = 0;
+      printf("FALSE\n");
+    }
+    //face = 1;
+    if (face){
+      printf("TRUE\n");
+      draw_line( polygons->m[0][i],  polygons->m[1][i], 
+		 polygons->m[0][i+1],polygons->m[1][i+1],
+		 s , c);
+      draw_line( polygons->m[0][i+1], polygons->m[1][i+1], 
+		 polygons->m[0][i+2], polygons->m[1][i+2],
 	      s , c);
-    draw_line( polygons->m[0][i+1], polygons->m[1][i+1], 
-	      polygons->m[0][i+2], polygons->m[1][i+2],
-	      s , c);
-    draw_line( polygons->m[0][i+2], polygons->m[1][i+2], 
-	      polygons->m[0][i], polygons->m[1][i],
-	      s , c);
-  } 
+      draw_line( polygons->m[0][i+2], polygons->m[1][i+2], 
+		 polygons->m[0][i], polygons->m[1][i],
+		 s , c);
+    } 
+  }
 }
 
 
@@ -123,8 +138,10 @@ void add_sphere( struct matrix * points,
   //latStop = num_steps/3;  
   for ( lat = latStart; lat < latStop; lat++ ) {
     for ( longt = longStart; longt < longStop; longt++ ) {
-
-      if ( ( index + num_steps + 1) < temp->lastcol ){
+      
+      printf("%d\n", (index% longStop));
+      if ( ( index + num_steps + 1) < temp->lastcol && (index % longStop) ){
+	printf("ture\n");
 	add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
@@ -135,7 +152,7 @@ void add_sphere( struct matrix * points,
 		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1]); //p12
 	index += 1;
       } else {
-	break;
+	index++;
       }
 	
     }//end points only
@@ -247,7 +264,20 @@ void add_torus( struct matrix * points,
 		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1]); //p12
 	index += 1;
       } else {
-	break;
+	if (index+1 < temp->lastcol ){
+	  add_polygon( points, //points:
+		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		       temp->m[0][ (index%num_steps) + 1 ], temp->m[1][ (index%num_steps) + 1 ], temp->m[2][ (index%num_steps) + 1 ], //p12
+		       temp->m[0][ (index%num_steps) ], temp->m[1][ (index%num_steps)], temp->m[2][index%num_steps]); //p11
+	  //printf("This is after the first add\n");
+	  add_polygon( points, //points:
+		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		       temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
+		       temp->m[0][(index%num_steps) + 1], temp->m[1][(index%num_steps) +1], temp->m[2][index+num_steps+1]); //p12
+	  index += 1;
+	} else {
+	  break;
+	} 
       }
 
 /*      
