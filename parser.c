@@ -148,7 +148,7 @@ void parse_file ( char * filename,
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf %lf", &x, &y, &z, &z1);
       printf("Got Here\n");
-      add_torus(pm, x, y, z, z1, 5);
+      add_torus(pm, x, y, z, z1, 10);
       //printf( "%lf %lf %lf\n", x, y, z);
       printf("Success!\n");
     }
