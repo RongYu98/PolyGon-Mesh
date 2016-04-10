@@ -34,6 +34,7 @@ zrotate
 translate
 250 250 0
 apply
-display
-#clear the edge matrix, test torus
+#display
+save
+sphere2.png
 clear
