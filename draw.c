@@ -72,12 +72,6 @@ void draw_polygons( struct matrix *polygons, screen s, color c ) {
     nz = ax*by - ay*bx;
     
     if ( (nx * vx + ny * vy + nz * vz) < 0 ){ 
-      face = 1;
-    } else {
-      face = 0;
-    }
-    //face = 1;
-    if (face == 1){
       draw_line( polygons->m[0][i],  polygons->m[1][i], 
 		 polygons->m[0][i+1],polygons->m[1][i+1],
 		 s , c);
@@ -135,27 +129,6 @@ void add_sphere( struct matrix * points,
     for ( longt = longStart; longt < longStop; longt++ ) {
 
       index = lat * (num_steps) + longt;      
-      /*
-      if ( ( lat + 1) < latStop ){
-	add_polygon( points, //points: p1 -> p11 -> p12
-		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		     temp->m[0][index+num_steps], temp->m[1][index+num_steps], temp->m[2][index+num_steps], //p11
-		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1]); //p12
-	add_polygon( points, //points: p1 --> p12 --> p2
-		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
-		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1]);//p2
-      } else {
-	  add_polygon( points, //points:
-		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		       temp->m[0][ longt ], temp->m[1][ longt ], temp->m[2][ longt ],  //p11
-		       temp->m[0][ longt +1], temp->m[1][ longt + 1 ], temp->m[2][ longt + 1 ]);//p12
-	  add_polygon( points, //points:
-		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		       temp->m[0][longt + 1], temp->m[1][longt +1], temp->m[2][longt+1],  //p12  
-		       temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1]);//p2          
-      }
-      */
       
       if ( ( lat + 1) < latStop ){
 	add_polygon( points, //points:
@@ -176,7 +149,6 @@ void add_sphere( struct matrix * points,
 		       temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
 		       temp->m[0][longt + 1], temp->m[1][longt +1], temp->m[2][longt+1]); //p11    
       }
-      
 	
     }//end points only
   }
