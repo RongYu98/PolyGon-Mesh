@@ -79,7 +79,7 @@ void draw_polygons( struct matrix *polygons, screen s, color c ) {
       //printf("FALSE\n");
     }
     //face = 1;
-    if (face){
+    if (face = 1){
       //printf("TRUE\n");
       draw_line( polygons->m[0][i],  polygons->m[1][i], 
 		 polygons->m[0][i+1],polygons->m[1][i+1],
@@ -141,7 +141,6 @@ void add_sphere( struct matrix * points,
 
       index = lat * (num_steps) + longt;      
 
-      //printf("%d\n", (index% longStop));
       if ( ( lat + 1) < latStop ){
 	add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
@@ -156,7 +155,6 @@ void add_sphere( struct matrix * points,
 		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		       temp->m[0][ longt +1], temp->m[1][ longt + 1 ], temp->m[2][ longt + 1 ], //p12
 		       temp->m[0][ longt ], temp->m[1][ longt ], temp->m[2][ longt ]); //p11
-	  //printf("This is after the first add\n");
 	  add_polygon( points, //points:
 		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		       temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
@@ -248,47 +246,57 @@ void add_torus( struct matrix * points,
 
   index = 0;
   
-  printf("Got to after generate torus\n");
   int latStop, longtStop, latStart, longStart;
   latStart = 0;
   longStart = 0;
   latStop = num_steps;
   longtStop = num_steps;
   for ( lat = 0; lat < latStop; lat++ )
-    for ( longt = 0; longt < num_steps; longt++ ) {
-      //printf("Got into the for loop\n");
+    for ( longt = 0; longt < longtStop; longt++ ) {
 
       index = lat * num_steps + longt;
  
-      if ( ( lat - 1) < latStop ){
-	//printf("Got into the if\n");
-	add_polygon( points, //points:
-		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
-		     temp->m[0][index+num_steps], temp->m[1][index+num_steps], temp->m[2][index+num_steps]); //p11
-	//printf("This is after the first add\n");
-	add_polygon( points, //points:
+      if ( ( lat + 1) < latStop ){
+	if ( (longt + 1) < longtStop ){  
+	  add_polygon( points, //points:
+	  		temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+	  		temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
+	  		temp->m[0][index+num_steps], temp->m[1][index+num_steps], temp->m[2][index+num_steps]); //p11
+	  add_polygon( points, //points:
 		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
 		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
-		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1]); //p12
-	index += 1;
-      } else {
-	if (index+1 < temp->lastcol ){
+		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1]); //p12	
+        } else {
+	  add_polygon( points,
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index],
+		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1],
+		     temp->m[0][index+num_steps], temp->m[1][index+num_steps], temp->m[2][index+num_steps]);
+	  add_polygon( points,
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index],
+		     temp->m[0][index-longt], temp->m[1][index-longt], temp->m[2][index-longt],
+		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1]);
+	} // end of else
+      } else {// i.e. last of lat, need to connect to the firsst ircle
+	if ( (longt + 1) < longtStop ){  
 	  add_polygon( points, //points:
-		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		       temp->m[0][ (index%num_steps) + 1 ], temp->m[1][ (index%num_steps) + 1 ], temp->m[2][ (index%num_steps) + 1 ], //p12
-		       temp->m[0][ (index%num_steps) ], temp->m[1][ (index%num_steps)], temp->m[2][index%num_steps]); //p11
-	  //printf("This is after the first add\n");
+	  		temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+	  		temp->m[0][longt+1], temp->m[1][longt+1], temp->m[2][longt+1], //p12
+	  		temp->m[0][longt], temp->m[1][longt], temp->m[2][longt]); //p11
 	  add_polygon( points, //points:
-		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
-		       temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
-		       temp->m[0][(index%num_steps) + 1], temp->m[1][(index%num_steps) +1], temp->m[2][index+num_steps+1]); //p12
-	  index += 1;
-	} else {
-	  break;
-	} 
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
+		     temp->m[0][longt+1], temp->m[1][longt+1], temp->m[2][longt+1]); //p12	
+        } else { //last last
+	  add_polygon( points,
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index],
+		     temp->m[0][0], temp->m[1][0], temp->m[2][0],
+		     temp->m[0][longt], temp->m[1][longt], temp->m[2][longt]);
+	  add_polygon( points,
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index],
+		     temp->m[0][index-num_steps+1], temp->m[1][index-num_steps+1], temp->m[2][index-num_steps+1],
+		     temp->m[0][0], temp->m[1][0], temp->m[2][0]);
+	}
       }
-
     }//end points only
   free_matrix(temp);
 }
