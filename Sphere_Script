@@ -1,6 +1,8 @@
 sphere
 0 0 200
-display
+save
+sphere1.png
+#display
 #rotate 90 degrees about y to check lines
 ident
 yrotate
@@ -8,7 +10,9 @@ yrotate
 translate
 250 250 0
 apply
-display
+#display
+save
+sphere2.png
 #reset sphere, rotate 90 degrees about x to check lines
 ident
 translate
@@ -20,7 +24,9 @@ xrotate
 translate
 250 250 0
 apply
-display
+#display
+save
+sphere3.png
 #reset sphere, rotate to make it look cool
 ident
 translate
@@ -34,7 +40,7 @@ zrotate
 translate
 250 250 0
 apply
-display
+#display
 save
-sphere2.png
+sphere4.png
 clear
