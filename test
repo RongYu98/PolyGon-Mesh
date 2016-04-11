@@ -1,13 +1,19 @@
+sphere
+0 0 160
 torus
-250 250 240 100
-#yrotate
-#90
-#zrotate
-#90
-#xrotate
-#90
+0 0 30 250
+ident
+zrotate
+60
+apply
+torus
+0 0 30 250
+ident
+zrotate
+-30
 translate
-#250 250 0
-#apply
-save
-torus.png
+250 325 0
+xrotate
+30
+apply
+display

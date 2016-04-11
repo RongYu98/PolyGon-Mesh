@@ -1,13 +1,15 @@
 torus
 0 0 50 100
+ident
 yrotate
 90
 zrotate
-90
+45
 xrotate
-90
+45
 translate
 250 250 0
 apply
-save
-torus.png
+display
+#save
+#torus.png

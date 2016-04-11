@@ -34,7 +34,7 @@ zrotate
 translate
 250 250 0
 apply
-#display
+display
 save
 sphere2.png
 clear

@@ -1,0 +1,26 @@
+
+  for ( lat = latStart; lat < latStop; lat++ ) {
+    for ( longt = longStart; longt < longStop; longt++ ) {
+
+      index = lat * (num_steps) + longt;      
+
+      if ( ( lat + 1) < latStop ){
+	add_polygon( points, //points:
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1], //p12
+		     temp->m[0][index+num_steps], temp->m[1][index+num_steps], temp->m[2][index+num_steps]); //p11
+	add_polygon( points, //points:
+		     temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		     temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
+		     temp->m[0][index+num_steps+1], temp->m[1][index+num_steps+1], temp->m[2][index+num_steps+1]); //p12
+      } else {
+	  add_polygon( points, //points:
+		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		       temp->m[0][ longt +1], temp->m[1][ longt + 1 ], temp->m[2][ longt + 1 ], //p12
+		       temp->m[0][ longt ], temp->m[1][ longt ], temp->m[2][ longt ]); //p11
+	  add_polygon( points, //points:
+		       temp->m[0][index], temp->m[1][index], temp->m[2][index], //p1
+		       temp->m[0][index+1], temp->m[1][index+1], temp->m[2][index+1], //p2
+		       temp->m[0][longt + 1], temp->m[1][longt +1], temp->m[2][longt+1]); //p1     
+      }
+    }//end points only
