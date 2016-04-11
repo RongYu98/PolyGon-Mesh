@@ -48,9 +48,13 @@ triangles
 jdyrlandweaver
 ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
-  int ax, ay, az, bx, by, bz, nx, ny, nz;
+  double ax, ay, az, bx, by, bz, nx, ny, nz;
   int i;
-  int face = 0;
+  int face = 0; 
+  double vx = 0;
+  double vy = 0;
+  double vz = -1;
+    
   for (i=0; i<polygons->lastcol-2; i+=3){
 
     //Step 1: Calculate N:
@@ -66,10 +70,6 @@ void draw_polygons( struct matrix *polygons, screen s, color c ) {
     nx = ay*bz - az*by;
     ny = az*bx - ax*bz;
     nz = ax*by - ay*bx;
-    
-    int vx = 0;
-    int vy = 0;
-    int vz = -1;
     
     if ( (nx * vx + ny * vy + nz * vz) < 0 ){ 
       face = 1;
