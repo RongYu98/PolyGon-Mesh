@@ -33,7 +33,7 @@ torus
 0 0 20 40
 ident
 translate
-250 200 0
+250 170 0
 apply
 draw
 clear
@@ -43,7 +43,7 @@ torus
 0 0 20 40
 ident
 xrotate
-60
+20
 translate
 250 100 0
 apply
