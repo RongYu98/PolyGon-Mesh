@@ -32,10 +32,20 @@ clear
 torus
 0 0 20 40
 ident
-yrotate
-60
 translate
 250 200 0
+apply
+draw
+clear
+###
+####
+torus
+0 0 20 40
+ident
+xrotate
+60
+translate
+250 100 0
 apply
 draw
 clear
