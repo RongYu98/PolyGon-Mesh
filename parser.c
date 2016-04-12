@@ -210,7 +210,7 @@ void parse_file ( char * filename,
     }
     else if (strncmp(line, "draw", strlen(line)) == 0 ){
       draw_polygons(pm, s, g);
-      printf("drew\n")
+      printf("drew\n");
     }
     else if ( strncmp(line, "save", strlen(line)) == 0 ) {
       fgets(line, 255, f);
