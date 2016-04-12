@@ -1,7 +1,13 @@
-#torus
-#250 250 240 245
-#draw
-#clear
+torus
+0 0 240 245
+ident
+xrotate
+90
+translate
+250 250 0
+apply
+draw
+clear
 ###
 torus
 0 0 20 50
