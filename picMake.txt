@@ -7,7 +7,7 @@ torus
 0 0 20 50
 ident
 yrotate
-45
+60
 xrotate
 45
 translate
@@ -20,7 +20,7 @@ torus
 0 0 20 50
 ident
 yrotate
--45
+-60
 xrotate
 45
 translate
