@@ -40,10 +40,10 @@ clear
 ###
 ####
 torus
-0 0 20 40
+0 0 20 80
 ident
 xrotate
-20
+10
 translate
 250 100 0
 apply
