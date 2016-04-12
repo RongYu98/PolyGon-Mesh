@@ -208,6 +208,9 @@ void parse_file ( char * filename,
       draw_polygons(pm, s, g);
       display(s);
     }
+    else if (strncmp(line, "draw", strlen(line)) == 0 ){
+      draw_polygons(pm, s, g);
+    }
     else if ( strncmp(line, "save", strlen(line)) == 0 ) {
       fgets(line, 255, f);
       // line[strlen(line)-1] = '\0';
